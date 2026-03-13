@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Riley - RealWealth AI Assistant</title>
+  <title>Riley - RealWealth AI Assistant | AI Alive</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -12,56 +13,98 @@
     }
     
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(180deg, #0a0a1a 0%, #1a1a2e 50%, #0f0f23 100%);
       min-height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       color: #fff;
+      padding: 20px;
     }
     
     .container {
       text-align: center;
-      padding: 40px;
-      max-width: 500px;
+      max-width: 600px;
       width: 100%;
     }
     
     .logo {
-      font-size: 48px;
-      margin-bottom: 10px;
+      margin-bottom: 30px;
+    }
+    
+    .logo img {
+      height: 60px;
+      width: auto;
+    }
+    
+    .hero-text {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #8b5cf6;
+      margin-bottom: 15px;
+      font-weight: 500;
     }
     
     h1 {
-      font-size: 32px;
-      margin-bottom: 8px;
-      font-weight: 600;
+      font-size: 42px;
+      margin-bottom: 12px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #fff 0%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     
     .subtitle {
-      color: #8892b0;
-      margin-bottom: 40px;
-      font-size: 16px;
+      color: #9ca3af;
+      margin-bottom: 50px;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    
+    .call-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
     }
     
     #callButton {
-      width: 120px;
-      height: 120px;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
-      border: none;
-      background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+      border: 3px solid rgba(139, 92, 246, 0.3);
+      background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
       color: white;
       font-size: 16px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
-      box-shadow: 0 8px 32px rgba(76, 175, 80, 0.3);
+      box-shadow: 0 0 40px rgba(139, 92, 246, 0.3), 0 8px 32px rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+    
+    #callButton::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #8b5cf6, #6d28d9, #4c1d95);
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
     
     #callButton:hover {
       transform: scale(1.05);
-      box-shadow: 0 12px 40px rgba(76, 175, 80, 0.4);
+      box-shadow: 0 0 60px rgba(139, 92, 246, 0.5), 0 12px 40px rgba(0, 0, 0, 0.4);
+    }
+    
+    #callButton:hover::before {
+      opacity: 1;
     }
     
     #callButton:disabled {
@@ -71,56 +114,64 @@
     }
     
     #callButton.active {
-      background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
-      box-shadow: 0 8px 32px rgba(244, 67, 54, 0.3);
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      border-color: rgba(239, 68, 68, 0.3);
+      box-shadow: 0 0 40px rgba(239, 68, 68, 0.3), 0 8px 32px rgba(0, 0, 0, 0.3);
       animation: pulse 2s infinite;
     }
     
     @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(244, 67, 54, 0.4); }
-      70% { box-shadow: 0 0 0 20px rgba(244, 67, 54, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(244, 67, 54, 0); }
+      0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4), 0 8px 32px rgba(0, 0, 0, 0.3); }
+      70% { box-shadow: 0 0 0 25px rgba(239, 68, 68, 0), 0 8px 32px rgba(0, 0, 0, 0.3); }
+      100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0), 0 8px 32px rgba(0, 0, 0, 0.3); }
     }
     
     .status {
-      margin-top: 30px;
-      font-size: 14px;
-      padding: 12px 24px;
-      border-radius: 25px;
+      font-size: 15px;
+      padding: 12px 28px;
+      border-radius: 30px;
       display: inline-block;
-      background: rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
     }
     
     .status.connected {
-      background: rgba(76, 175, 80, 0.2);
-      color: #81c784;
+      background: rgba(34, 197, 94, 0.15);
+      border-color: rgba(34, 197, 94, 0.3);
+      color: #86efac;
     }
     
     .status.speaking {
-      background: rgba(33, 150, 243, 0.2);
-      color: #64b5f6;
+      background: rgba(139, 92, 246, 0.15);
+      border-color: rgba(139, 92, 246, 0.3);
+      color: #c4b5fd;
     }
     
     .status.connecting {
-      background: rgba(255, 193, 7, 0.2);
-      color: #ffd54f;
+      background: rgba(251, 191, 36, 0.15);
+      border-color: rgba(251, 191, 36, 0.3);
+      color: #fde68a;
     }
     
     .status.error {
-      background: rgba(244, 67, 54, 0.2);
-      color: #ef5350;
+      background: rgba(239, 68, 68, 0.15);
+      border-color: rgba(239, 68, 68, 0.3);
+      color: #fca5a5;
     }
     
     #transcript {
       margin-top: 30px;
-      background: rgba(255,255,255,0.05);
-      border-radius: 12px;
-      padding: 20px;
-      max-height: 200px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 24px;
+      max-height: 220px;
       overflow-y: auto;
       text-align: left;
       font-size: 14px;
-      line-height: 1.6;
+      line-height: 1.7;
+      backdrop-filter: blur(10px);
     }
     
     #transcript:empty {
@@ -128,9 +179,9 @@
     }
     
     #transcript p {
-      margin-bottom: 12px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
     
     #transcript p:last-child {
@@ -139,29 +190,77 @@
       border-bottom: none;
     }
     
+    #transcript strong {
+      color: #a78bfa;
+    }
+    
     .instructions {
-      margin-top: 40px;
+      margin-top: 50px;
       font-size: 13px;
-      color: #8892b0;
-      line-height: 1.6;
+      color: #6b7280;
+      line-height: 1.8;
+      max-width: 450px;
+    }
+    
+    .powered-by {
+      margin-top: 40px;
+      font-size: 12px;
+      color: #4b5563;
+    }
+    
+    .powered-by a {
+      color: #8b5cf6;
+      text-decoration: none;
+    }
+    
+    .powered-by a:hover {
+      text-decoration: underline;
+    }
+
+    /* Scrollbar styling */
+    #transcript::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    #transcript::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 3px;
+    }
+    
+    #transcript::-webkit-scrollbar-thumb {
+      background: rgba(139, 92, 246, 0.3);
+      border-radius: 3px;
+    }
+    
+    #transcript::-webkit-scrollbar-thumb:hover {
+      background: rgba(139, 92, 246, 0.5);
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="logo">🏠</div>
-    <h1>Riley</h1>
-    <p class="subtitle">RealWealth AI Assistant</p>
+    <div class="logo">
+      <img src="https://assets.cdn.filesafe.space/jhHA9W0qCoM76KBPO0Wu/media/6813ced1a10b85afeba85ecc.png" alt="AI Alive">
+    </div>
     
-    <button id="callButton" onclick="toggleCall()">Start Call</button>
+    <p class="hero-text">AI Alive Premium Voice Agent</p>
+    <h1>Meet Riley</h1>
+    <p class="subtitle">Your RealWealth AI Investment Counselor.<br>Available 24/7 to answer questions and schedule appointments.</p>
     
-    <p id="status" class="status idle">Click to start a conversation</p>
+    <div class="call-section">
+      <button id="callButton" onclick="toggleCall()">Start Call</button>
+      <p id="status" class="status idle">Click to start a conversation</p>
+    </div>
     
     <div id="transcript"></div>
     
     <p class="instructions">
       Click the button and allow microphone access to speak with Riley.<br>
-      Riley can answer questions about RealWealth services and schedule appointments.
+      Riley can answer questions about RealWealth services, investment options, and help schedule strategy sessions.
+    </p>
+    
+    <p class="powered-by">
+      Powered by <a href="https://aialive.app" target="_blank">AI Alive</a>
     </p>
   </div>
   
